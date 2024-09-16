@@ -27,7 +27,11 @@ def get_categories(db: Session = Depends(get_db), pagination: PaginationParams =
 
 @router.post("/")
 def create_category(request: CategoryCreate, db: Session = Depends(get_db)) -> Category:
-    """Create new Category endpoint."""
+    """
+    Create new Category endpoint.
+
+    If `parent_id` is provided as `0`, it will be ignored, as it is meant to be used only for subcategories.
+    """
     return category_service.create_category(db, request)
 
 

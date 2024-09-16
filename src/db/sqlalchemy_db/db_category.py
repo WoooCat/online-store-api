@@ -37,7 +37,12 @@ class SqlalchemyCategoryDatabase(AbstractCategoryDatabase):
 
     def create_category(self, db: Session, category: CategoryCreate) -> DbCategory:
         """Create a new category and manage category relations."""
-        new_category = DbCategory(name=category.name, parent_id=category.parent_id)
+        parent_id = category.parent_id if category.parent_id != 0 else None
+
+        if parent_id:
+            get_object_or_404(DbCategory, FilterField.ID, parent_id, db)
+
+        new_category = DbCategory(name=category.name, parent_id=parent_id)
         db.add(new_category)
         db.commit()
 

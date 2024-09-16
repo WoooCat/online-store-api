@@ -1,10 +1,19 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Float, Boolean
 from sqlalchemy.orm import relationship
+
+from config import (
+    CATEGORY_TABLE,
+    SALE_TABLE,
+    RESERVATION_TABLE,
+    PRODUCT_DISCOUNT_TABLE,
+    DISCOUNT_TABLE, PRODUCT_TABLE,
+    CATEGORY_RELATIONS_TABLE,
+)
 from .database import Base
 
 
 class DbCategory(Base):
-    __tablename__ = 'categories'
+    __tablename__ = CATEGORY_TABLE
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
     parent_id = Column(Integer, ForeignKey('categories.id'), nullable=True)
@@ -12,15 +21,16 @@ class DbCategory(Base):
 
 
 class DbCategoryRelation(Base):
-    __tablename__ = 'category_relations'
+    __tablename__ = CATEGORY_RELATIONS_TABLE
     id = Column(Integer, primary_key=True, index=True)
     ancestor_id = Column(Integer, ForeignKey('categories.id'), nullable=False)
     descendant_id = Column(Integer, ForeignKey('categories.id'), nullable=False)
     depth = Column(Integer, nullable=False)
 
 
+
 class DbProduct(Base):
-    __tablename__ = 'products'
+    __tablename__ = PRODUCT_TABLE
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, nullable=False)
     price = Column(Float, nullable=False)
@@ -35,7 +45,7 @@ class DbProduct(Base):
 
 
 class DbDiscount(Base):
-    __tablename__ = 'discounts'
+    __tablename__ = DISCOUNT_TABLE
     id = Column(Integer, primary_key=True, index=True)
     percentage = Column(Float, nullable=False)
     description = Column(String, nullable=True)
@@ -43,7 +53,7 @@ class DbDiscount(Base):
 
 
 class DbProductDiscount(Base):
-    __tablename__ = 'product_discounts'
+    __tablename__ = PRODUCT_DISCOUNT_TABLE
     id = Column(Integer, primary_key=True, index=True)
     product_id = Column(Integer, ForeignKey('products.id'), nullable=False)
     discount_id = Column(Integer, ForeignKey('discounts.id'), nullable=False)
@@ -52,7 +62,7 @@ class DbProductDiscount(Base):
 
 
 class DbReservation(Base):
-    __tablename__ = 'reservations'
+    __tablename__ = RESERVATION_TABLE
     id = Column(Integer, primary_key=True, index=True)
     product_id = Column(Integer, ForeignKey('products.id'), nullable=False)
     quantity = Column(Integer, nullable=False)
@@ -61,7 +71,7 @@ class DbReservation(Base):
 
 
 class DbSale(Base):
-    __tablename__ = 'sales'
+    __tablename__ = SALE_TABLE
     id = Column(Integer, primary_key=True, index=True)
     product_id = Column(Integer, ForeignKey('products.id'), nullable=False)
     quantity = Column(Integer, nullable=False)

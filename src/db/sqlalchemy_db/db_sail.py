@@ -1,9 +1,11 @@
-from typing import Optional, List
-from sqlalchemy.orm import Session
+from typing import List, Optional
+
 from fastapi import HTTPException
-from ...db.models import DbProduct, DbSale, DbCategory
+from sqlalchemy.orm import Session
+
+from ...db.models import DbCategory, DbProduct, DbSale
 from ...enums import FilterField
-from ...request_utils import get_object_or_404, PaginationParams, apply_pagination
+from ...request_utils import PaginationParams, apply_pagination, get_object_or_404
 from ..abstract.db_abstract_sale import AbstractSaleDatabase
 
 

@@ -1,10 +1,12 @@
-from typing import List, Dict
+from typing import Dict, List
+
 from sqlalchemy.orm import Session
-from ...db.models import DbProduct, DbCategoryRelation, DbCategory
-from ..abstract.db_abstract_product import AbstractProductDatabase
+
+from ...db.models import DbCategory, DbCategoryRelation, DbProduct
 from ...enums import FilterField
+from ...request_utils import PaginationParams, apply_pagination, get_object_or_404
 from ...schemas.product_schemes import ProductCreate, ProductUpdate
-from ...request_utils import get_object_or_404, PaginationParams, apply_pagination
+from ..abstract.db_abstract_product import AbstractProductDatabase
 
 
 class SqlalchemyProductDatabase(AbstractProductDatabase):
@@ -63,7 +65,7 @@ class SqlalchemyProductDatabase(AbstractProductDatabase):
 
         db.delete(db_product)
         db.commit()
-        return {'message': f"Product deleted successfully"}
+        return {'message': "Product deleted successfully"}
 
     def _get_all_subcategories(self, db: Session, category_id: int) -> List[int]:
         """Get all Subcategories for given Category ID."""

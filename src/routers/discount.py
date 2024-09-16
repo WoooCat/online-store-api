@@ -3,12 +3,12 @@ from typing import List
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
+from ..db.database import get_db
 from ..db.sqlalchemy_db.db_discount import SqlalchemyDiscountDatabase
-from ..schemas.discount_schemes import DiscountCreate, DiscountUpdate, Discount
+from ..request_utils import PaginationParams
+from ..schemas.discount_schemes import Discount, DiscountCreate, DiscountUpdate
 from ..schemas.product_schemes import Product
 from ..services.discount_service import DiscountService
-from ..db.database import get_db
-from ..request_utils import PaginationParams
 
 router = APIRouter(
     prefix="/discount",

@@ -1,10 +1,12 @@
 from typing import List
+
 from sqlalchemy.orm import Session
+
+from ...enums import FilterField
+from ...request_utils import PaginationParams, apply_pagination, get_object_or_404
+from ...schemas.category_schemes import CategoryCreate, CategoryUpdate
 from ..abstract.db_abstract_category import AbstractCategoryDatabase
 from ..models import DbCategory, DbCategoryRelation
-from ...enums import FilterField
-from ...schemas.category_schemes import CategoryCreate, CategoryUpdate
-from ...request_utils import apply_pagination, PaginationParams, get_object_or_404
 
 
 class SqlalchemyCategoryDatabase(AbstractCategoryDatabase):

@@ -1,8 +1,8 @@
 from fastapi import FastAPI
+
 from src.db import models
 from src.db.database import engine
-from src.routers import category, product, discount, reservation, sale
-
+from src.routers import category, discount, product, reservation, sale
 
 app = FastAPI(
     title="Online Store",

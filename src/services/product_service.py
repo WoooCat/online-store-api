@@ -1,8 +1,10 @@
-from typing import List, Dict
+from typing import Dict, List
+
 from sqlalchemy.orm import Session
+
 from ..db.abstract.db_abstract_product import AbstractProductDatabase
-from ..schemas.product_schemes import ProductCreate, ProductUpdate, Product
 from ..request_utils import PaginationParams
+from ..schemas.product_schemes import Product, ProductCreate, ProductUpdate
 
 
 class ProductService:

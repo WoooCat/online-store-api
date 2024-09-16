@@ -1,10 +1,11 @@
-from sqlalchemy import create_engine
-from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-from config import DATABASE_URL, DB_CONNECTOR
 from typing import AsyncGenerator, Generator
 
+from sqlalchemy import create_engine
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+
+from config import DATABASE_URL, DB_CONNECTOR
 
 Base = declarative_base()
 

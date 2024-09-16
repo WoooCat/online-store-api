@@ -1,5 +1,7 @@
-from typing import Optional, List
+from typing import List, Optional
+
 from sqlalchemy.orm import Session
+
 from ..db.abstract.db_abstract_sale import AbstractSaleDatabase
 from ..db.models import DbSale
 from ..request_utils import PaginationParams

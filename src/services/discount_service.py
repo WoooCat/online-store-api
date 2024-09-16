@@ -1,8 +1,10 @@
-from typing import List, Dict
+from typing import List
+
 from sqlalchemy.orm import Session
+
 from ..db.abstract.db_abstract_doscount import AbstractDiscountDatabase
-from ..schemas.discount_schemes import DiscountCreate, DiscountUpdate, Discount
 from ..request_utils import PaginationParams
+from ..schemas.discount_schemes import Discount, DiscountCreate, DiscountUpdate
 
 
 class DiscountService:

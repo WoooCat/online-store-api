@@ -1,8 +1,10 @@
 from typing import List
+
 from sqlalchemy.orm import Session
+
 from ..db.sqlalchemy_db.db_category import SqlalchemyCategoryDatabase
-from ..schemas.category_schemes import CategoryCreate, CategoryUpdate, Category
 from ..request_utils import PaginationParams
+from ..schemas.category_schemes import Category, CategoryCreate, CategoryUpdate
 
 
 class CategoryService:

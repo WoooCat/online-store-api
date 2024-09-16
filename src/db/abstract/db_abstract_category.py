@@ -38,4 +38,3 @@ class AbstractCategoryDatabase(ABC):
     def get_category_relations(self, db, category_id):
         """Retrieve all Categories related to specific category."""
         pass
-

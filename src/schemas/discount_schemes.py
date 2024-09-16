@@ -1,4 +1,5 @@
 from typing import Optional
+
 from pydantic import BaseModel, Field
 
 """DISCOUNT SCHEMES"""
@@ -46,4 +47,3 @@ class ProductDiscount(ProductDiscountBase):
 
     class Config:
         from_attributes = True
-

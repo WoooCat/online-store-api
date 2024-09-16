@@ -1,14 +1,16 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Float, Boolean
+from sqlalchemy import Boolean, Column, Float, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
 from config import (
-    CATEGORY_TABLE,
-    SALE_TABLE,
-    RESERVATION_TABLE,
-    PRODUCT_DISCOUNT_TABLE,
-    DISCOUNT_TABLE, PRODUCT_TABLE,
     CATEGORY_RELATIONS_TABLE,
+    CATEGORY_TABLE,
+    DISCOUNT_TABLE,
+    PRODUCT_DISCOUNT_TABLE,
+    PRODUCT_TABLE,
+    RESERVATION_TABLE,
+    SALE_TABLE,
 )
+
 from .database import Base
 
 
@@ -26,7 +28,6 @@ class DbCategoryRelation(Base):
     ancestor_id = Column(Integer, ForeignKey('categories.id'), nullable=False)
     descendant_id = Column(Integer, ForeignKey('categories.id'), nullable=False)
     depth = Column(Integer, nullable=False)
-
 
 
 class DbProduct(Base):

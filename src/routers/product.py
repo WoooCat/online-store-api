@@ -1,12 +1,13 @@
-from typing import List, Dict
+from typing import Dict, List
 
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from ..db.sqlalchemy_db.db_product import SqlalchemyProductDatabase
-from ..schemas.product_schemes import ProductCreate, ProductUpdate, Product, ProductPriceUpdate
+
 from ..db.database import get_db
-from ..services.product_service import ProductService
+from ..db.sqlalchemy_db.db_product import SqlalchemyProductDatabase
 from ..request_utils import PaginationParams
+from ..schemas.product_schemes import Product, ProductCreate, ProductPriceUpdate, ProductUpdate
+from ..services.product_service import ProductService
 
 router = APIRouter(
     prefix="/product",

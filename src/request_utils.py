@@ -1,5 +1,6 @@
-from fastapi import HTTPException, status, Depends, Query
+from fastapi import Depends, HTTPException, Query, status
 from sqlalchemy.orm import Session
+
 from src.db.database import get_db
 from src.enums import FilterField
 

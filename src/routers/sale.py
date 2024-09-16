@@ -5,10 +5,9 @@ from sqlalchemy.orm import Session
 
 from ..db.database import get_db
 from ..db.sqlalchemy_db.db_sail import SqlalchemySaleDatabase
+from ..request_utils import PaginationParams
 from ..schemas.sale_schemes import Sale
 from ..services.sale_service import SaleService
-from ..request_utils import PaginationParams
-
 
 router = APIRouter(
     prefix="/sale",

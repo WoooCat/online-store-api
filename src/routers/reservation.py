@@ -1,13 +1,13 @@
-from typing import List, Dict
+from typing import Dict, List
 
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from ..db.database import get_db
 from ..db.sqlalchemy_db.db_reservation import SqlalchemyReservationDatabase
-from ..schemas.reservation_schemes import Reservation, QuantityRequest
-from ..services.reservation_service import ReservationService
 from ..request_utils import PaginationParams
+from ..schemas.reservation_schemes import QuantityRequest, Reservation
+from ..services.reservation_service import ReservationService
 
 router = APIRouter(
     prefix="/reservation",
@@ -24,7 +24,10 @@ def get_reservations(db: Session = Depends(get_db), pagination: PaginationParams
 
 
 @router.get("/reservations/active", response_model=List[Reservation])
-def get_active_reservations(db: Session = Depends(get_db), pagination: PaginationParams = Depends()) -> List[Reservation]:
+def get_active_reservations(
+        db: Session = Depends(get_db),
+        pagination: PaginationParams = Depends()
+) -> List[Reservation]:
     """Get active Reservations endpoint."""
     return reservation_service.get_active_reservations(db, pagination)
 

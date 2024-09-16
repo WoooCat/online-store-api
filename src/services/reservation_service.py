@@ -1,5 +1,7 @@
-from typing import List, Dict
+from typing import Dict, List
+
 from sqlalchemy.orm import Session
+
 from ..db.abstract.db_abstract_reservation import AbstractReservationDatabase
 from ..db.models import DbReservation
 from ..request_utils import PaginationParams
@@ -29,4 +31,3 @@ class ReservationService:
     def cancel_reservation(self, db: Session, reservation_id: int) -> Dict:
         """Cancel Reservation by ID."""
         return self.db.cancel_reservation(db, reservation_id)
-

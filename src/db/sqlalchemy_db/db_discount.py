@@ -1,13 +1,14 @@
 from decimal import Decimal
-from typing import List, Dict
-from sqlalchemy.orm import Session
-from fastapi import HTTPException
+from typing import List
 
-from ..abstract.db_abstract_doscount import AbstractDiscountDatabase
-from ...db.models import DbDiscount, DbProductDiscount, DbProduct
+from fastapi import HTTPException
+from sqlalchemy.orm import Session
+
+from ...db.models import DbDiscount, DbProduct, DbProductDiscount
 from ...enums import FilterField
+from ...request_utils import PaginationParams, apply_pagination, get_object_or_404
 from ...schemas.discount_schemes import DiscountCreate, DiscountUpdate
-from ...request_utils import get_object_or_404, PaginationParams, apply_pagination
+from ..abstract.db_abstract_doscount import AbstractDiscountDatabase
 
 
 class SqlalchemyDiscountDatabase(AbstractDiscountDatabase):
@@ -81,7 +82,7 @@ class SqlalchemyDiscountDatabase(AbstractDiscountDatabase):
             if not db_product_discount:
                 raise HTTPException(
                     status_code=404,
-                    detail=f"Product Discount with 'product_id': {product_id} and 'discount_id': {discount_id} not found"
+                    detail=f"Product Discount with 'id': {product_id} and 'discount_id': {discount_id} not found"
                 )
 
             db_product = get_object_or_404(DbProduct, FilterField.ID, product_id, db)

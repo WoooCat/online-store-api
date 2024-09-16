@@ -3,12 +3,11 @@ from typing import List
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from ..db.sqlalchemy_db.db_category import SqlalchemyCategoryDatabase
-from ..services.category_service import CategoryService
-from ..schemas.category_schemes import CategoryCreate, Category, CategoryUpdate
 from ..db.database import get_db
+from ..db.sqlalchemy_db.db_category import SqlalchemyCategoryDatabase
 from ..request_utils import PaginationParams
-
+from ..schemas.category_schemes import Category, CategoryCreate, CategoryUpdate
+from ..services.category_service import CategoryService
 
 router = APIRouter(
     prefix="/category",

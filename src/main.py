@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from src.db import models
 from src.db.database import engine
-from src.routers import category, product, discount
+from src.routers import category, product, discount, reservation
 
 
 app = FastAPI(
@@ -20,6 +20,7 @@ async def status_endpoint():
 app.include_router(category.router)
 app.include_router(product.router)
 app.include_router(discount.router)
+app.include_router(reservation.router)
 
 
 models.Base.metadata.create_all(engine)

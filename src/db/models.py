@@ -49,3 +49,13 @@ class DbProductDiscount(Base):
     discount_id = Column(Integer, ForeignKey('discounts.id'), nullable=False)
     product = relationship("DbProduct", backref="product_discounts")
     discount = relationship("DbDiscount", backref="product_discounts")
+
+
+class DbReservation(Base):
+    __tablename__ = 'reservations'
+    id = Column(Integer, primary_key=True, index=True)
+    product_id = Column(Integer, ForeignKey('products.id'), nullable=False)
+    quantity = Column(Integer, nullable=False)
+    status = Column(String, nullable=False, default='reserved')
+    product = relationship("DbProduct", backref="reservations")
+

@@ -8,7 +8,7 @@ class PaginationParams:
     def __init__(
             self,
             limit: int = Query(10, ge=1, description="Number of items to return"),
-            offset: int = Query(0, ge=0, description="Number of items to return")
+            offset: int = Query(0, ge=0, description="Number of items to skip before starting to return items")
     ):
         self.limit = limit
         self.offset = offset

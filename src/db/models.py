@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Float
+from sqlalchemy import Column, Integer, String, ForeignKey, Float, Boolean
 from sqlalchemy.orm import relationship
 from .database import Base
 
@@ -32,3 +32,20 @@ class DbProduct(Base):
     @property
     def category_name(self):
         return self.category.name if self.category else None
+
+
+class DbDiscount(Base):
+    __tablename__ = 'discounts'
+    id = Column(Integer, primary_key=True, index=True)
+    percentage = Column(Float, nullable=False)
+    description = Column(String, nullable=True)
+    active = Column(Boolean, default=True)
+
+
+class DbProductDiscount(Base):
+    __tablename__ = 'product_discounts'
+    id = Column(Integer, primary_key=True, index=True)
+    product_id = Column(Integer, ForeignKey('products.id'), nullable=False)
+    discount_id = Column(Integer, ForeignKey('discounts.id'), nullable=False)
+    product = relationship("DbProduct", backref="product_discounts")
+    discount = relationship("DbDiscount", backref="product_discounts")

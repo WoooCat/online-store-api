@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey, Float
 from sqlalchemy.orm import relationship
 from .database import Base
 
@@ -17,3 +17,18 @@ class DbCategoryRelation(Base):
     ancestor_id = Column(Integer, ForeignKey('categories.id'), nullable=False)
     descendant_id = Column(Integer, ForeignKey('categories.id'), nullable=False)
     depth = Column(Integer, nullable=False)
+
+
+class DbProduct(Base):
+    __tablename__ = 'products'
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, nullable=False)
+    price = Column(Float, nullable=False)
+    stock = Column(Integer, nullable=False)
+    reserved_stock = Column(Integer, default=0)
+    category_id = Column(Integer, ForeignKey('categories.id'))
+    category = relationship("DbCategory", backref="products")
+
+    @property
+    def category_name(self):
+        return self.category.name if self.category else None

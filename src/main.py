@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from src.db import models
 from src.db.database import engine
+from src.routers import category
 
 
 app = FastAPI(
@@ -14,6 +15,9 @@ app = FastAPI(
 async def status_endpoint():
     """Endpoint to return status message."""
     return {"status": "Online"}
+
+
+app.include_router(category.router)
 
 
 models.Base.metadata.create_all(engine)
